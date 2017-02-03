@@ -157,8 +157,6 @@ class FirstViewController: UIViewController {
                 genoText.text = "Picture not found"
             }
         
-            //print("End network call")
-        
     }
     
     func linkOut(sender: UIBarButtonItem) {
