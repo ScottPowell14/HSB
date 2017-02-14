@@ -32,8 +32,6 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //print("Survivor Timeline View Controller active")
-        
         // scroll view set up
         let trueScreenHeight = (Int(self.view.frame.height) / 2) - Int((self.navigationController?.navigationBar.frame.height)!)
         
