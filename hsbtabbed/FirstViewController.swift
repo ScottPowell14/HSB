@@ -71,13 +71,13 @@ class FirstViewController: UIViewController {
         
         
         //print(UIDevice.currentDevice().model)
-        if UIDevice.currentDevice().model == "iPad" {
+        if UIDevice.current.model == "iPad" {
             //print("Did it")
             genoImage.frame.size = CGSize(width: 500, height: 400)
         }
         
         
-        let buttonLinkOut = UIBarButtonItem(title: "Learn More", style: .Plain, target: self, action: "linkOut:")
+        let buttonLinkOut = UIBarButtonItem(title: "Learn More", style: .plain, target: self, action: #selector(FirstViewController.linkOut(_:)))
         navigationItem.rightBarButtonItem = buttonLinkOut
         
         
@@ -88,41 +88,41 @@ class FirstViewController: UIViewController {
         // need a load image method (i.e. put this switch into a method) and have a message as the default image view. Every time the image is clicked then it calls the method to reload the image. 
         switch currentGenoName! {
             case "Bosnia":
-                if let url = NSURL(string: "http://i.imgur.com/4Wy7178.png") {
+                if let url = URL(string: "http://i.imgur.com/4Wy7178.png") {
                     //print("Tried")
-                    if let data = NSData(contentsOfURL: url) {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/bosnia-herzegovina"
                     }
                 }
             case "Burma":
-                if let url = NSURL(string: "http://i.imgur.com/lUo7Gfo.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/lUo7Gfo.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/burma"
                     }
                 }
             case "Cambodia":
-                if let url = NSURL(string: "http://i.imgur.com/o68reVc.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/o68reVc.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/cambodia/introduction/cambodia-1975"
                     }
                 }
             case "Central African Republic":
-                if let url = NSURL(string: "http://i.imgur.com/Q9LFHYU.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/Q9LFHYU.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/central-african-republic"
                     }
                 }
             case "Congo":
-                if let url = NSURL(string: "http://i.imgur.com/5ijxFk8.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/5ijxFk8.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/dr-congo"
@@ -130,24 +130,24 @@ class FirstViewController: UIViewController {
                     }
                 }
             case "Rwanda":
-                if let url = NSURL(string: "http://i.imgur.com/RLZUa8q.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/RLZUa8q.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/rwanda"
                     }
                 }
             case "South Sudan":
-                if let url = NSURL(string: "http://i.imgur.com/Gnd2PNH.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/Gnd2PNH.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/south-sudan"
                     }
                 }
             case "Syria":
-                if let url = NSURL(string: "http://i.imgur.com/nP6P9Gl.png") {
-                    if let data = NSData(contentsOfURL: url) {
+                if let url = URL(string: "http://i.imgur.com/nP6P9Gl.png") {
+                    if let data = try? Data(contentsOf: url) {
                         let imageFromOnline = UIImage(data: data)
                         genoImage.image = imageFromOnline
                         urlString = "http://www.ushmm.org/confront-genocide/cases/syria"
@@ -159,11 +159,11 @@ class FirstViewController: UIViewController {
         
     }
     
-    func linkOut(sender: UIBarButtonItem) {
+    func linkOut(_ sender: UIBarButtonItem) {
         //print("Link out")
         if let urlFinString = urlString {
-            if let url = NSURL(string: urlFinString) {
-                UIApplication.sharedApplication().openURL(url)
+            if let url = URL(string: urlFinString) {
+                UIApplication.shared.openURL(url)
             }
         }
     }

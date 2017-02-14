@@ -134,21 +134,21 @@ class MapLocViewController: UIViewController {
         bioTextView.scrollRangeToVisible(NSMakeRange(0, 0))
         //bioTextView.contentInset = UIEdgeInsets(top: -8.0, left: 0.0, bottom: 0.0, right: 0.0)
         imgView.image = UIImage(named: locationImages[location]![0])
-        bioTextView.editable = false
+        bioTextView.isEditable = false
         
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         bioTextView.flashScrollIndicators()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segID = segue.identifier
         
         if segID == "locationToMap" {
             // next view controller is the tab controller which should be set to the map tab
-            let nextViewController = segue.destinationViewController as! UITabBarController
+            let nextViewController = segue.destination as! UITabBarController
             nextViewController.selectedIndex = 1
             
             // the Storyboard ID for the tab bar controller was changed to tabBarController

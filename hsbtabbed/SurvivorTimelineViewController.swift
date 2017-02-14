@@ -17,15 +17,15 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
     
     var transitionEvent: String?
     
-    @IBAction func segShift(sender: AnyObject, forEvent event: UIEvent) {
+    @IBAction func segShift(_ sender: AnyObject, forEvent event: UIEvent) {
         //print("Shift")
         if segControl.selectedSegmentIndex != 1 {
             //print(" To Historical")
-            performSegueWithIdentifier("HistTimeSegue", sender: self)
+            performSegue(withIdentifier: "HistTimeSegue", sender: self)
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         scrollView.flashScrollIndicators()
     }
     
@@ -39,7 +39,7 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.frame = self.view.frame
         scrollView.contentSize = CGSize(width: 380 * 12, height: trueScreenHeight)
-        scrollView.directionalLockEnabled = true
+        scrollView.isDirectionalLockEnabled = true
         
         // Event view set up and formatting
         
@@ -59,16 +59,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event1 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage1 = UIImage(named: "event1.png")
-        event1.setBackgroundImage(eventImage1, forState: .Normal)
+        event1.setBackgroundImage(eventImage1, for: UIControlState())
         
         let eventLabel1 = UILabel(frame: CGRect(x: event1.frame.origin.x, y: event1.frame.origin.y + event1.frame.height, width: event1.frame.width, height: 60))
         eventLabel1.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel1.font = eventLabel1.font.fontWithSize(22)
-        eventLabel1.textAlignment = .Center
+        eventLabel1.font = eventLabel1.font.withSize(22)
+        eventLabel1.textAlignment = .center
         eventLabel1.text = "Frank suffers under the Nuremberg Laws"
         eventLabel1.numberOfLines = 2
         
-        event1.addTarget(self, action: "eventOnePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event1.addTarget(self, action: #selector(SurvivorTimelineViewController.eventOnePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event1)
         scrollView.addSubview(eventLabel1)
@@ -84,15 +84,15 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         // event1936
         let event1936 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         let eventImage1936 = UIImage(named: "MarianneEvent3")
-        event1936.setBackgroundImage(eventImage1936, forState: .Normal)
+        event1936.setBackgroundImage(eventImage1936, for: UIControlState())
         
         let eventLabel1936 = UILabel(frame: CGRect(x: event1936.frame.origin.x, y: event1936.frame.origin.y + event1936.frame.height, width: event1936.frame.width, height: 50))
         eventLabel1936.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel1936.font = eventLabel1.font.fontWithSize(25)
-        eventLabel1936.textAlignment = .Center
+        eventLabel1936.font = eventLabel1.font.withSize(25)
+        eventLabel1936.textAlignment = .center
         eventLabel1936.text = "Marianne orphaned"
         
-        event1936.addTarget(self, action: "eventMariannePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event1936.addTarget(self, action: #selector(SurvivorTimelineViewController.eventMariannePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event1936)
         scrollView.addSubview(eventLabel1936)
@@ -108,15 +108,15 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event2 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage2 = UIImage(named: "event5.png")
-        event2.setBackgroundImage(eventImage2, forState: .Normal)
+        event2.setBackgroundImage(eventImage2, for: UIControlState())
         
         let eventLabel2 = UILabel(frame: CGRect(x: event2.frame.origin.x, y: event2.frame.origin.y + event2.frame.height, width: event2.frame.width, height: 50))
         eventLabel2.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel2.font = eventLabel1.font.fontWithSize(25)
-        eventLabel2.textAlignment = .Center
+        eventLabel2.font = eventLabel1.font.withSize(25)
+        eventLabel2.textAlignment = .center
         eventLabel2.text = "First Kindertransport"
         
-        event2.addTarget(self, action: "eventFivePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event2.addTarget(self, action: #selector(SurvivorTimelineViewController.eventFivePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event2)
         scrollView.addSubview(eventLabel2)
@@ -137,15 +137,15 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event3 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage3 = UIImage(named: "MarleneEvent3")
-        event3.setBackgroundImage(eventImage3, forState: .Normal)
+        event3.setBackgroundImage(eventImage3, for: UIControlState())
         
         let eventLabel3 = UILabel(frame: CGRect(x: event3.frame.origin.x, y: event3.frame.origin.y + event3.frame.height, width: event3.frame.width, height: 50))
         eventLabel3.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel3.font = eventLabel1.font.fontWithSize(23)
-        eventLabel3.textAlignment = .Center
+        eventLabel3.font = eventLabel1.font.withSize(23)
+        eventLabel3.textAlignment = .center
         eventLabel3.text = "Marlene Appley flees"
         
-        event3.addTarget(self, action: "eventMarlenePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event3.addTarget(self, action: #selector(SurvivorTimelineViewController.eventMarlenePressed), for: UIControlEvents.touchUpInside)
         
         // event 4 - 1938
         
@@ -185,16 +185,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event5 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage5 = UIImage(named: "HenryEvent1")
-        event5.setBackgroundImage(eventImage5, forState: .Normal)
+        event5.setBackgroundImage(eventImage5, for: UIControlState())
         
         let eventLabel5 = UILabel(frame: CGRect(x: event5.frame.origin.x, y: event5.frame.origin.y + event5.frame.height, width: event5.frame.width, height: 50))
         eventLabel5.font = UIFont(name: "HelveticaNeueThin", size: 20)
-        eventLabel5.font = eventLabel1.font.fontWithSize(20)
-        eventLabel5.textAlignment = .Center
+        eventLabel5.font = eventLabel1.font.withSize(20)
+        eventLabel5.textAlignment = .center
         eventLabel5.numberOfLines = 2
         eventLabel5.text = "Henry on the Kindertransport"
         
-        event5.addTarget(self, action: "eventHenryPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event5.addTarget(self, action: #selector(SurvivorTimelineViewController.eventHenryPressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event5)
         scrollView.addSubview(eventLabel5)
@@ -205,18 +205,18 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         
         let eventImage5_2 = UIImage(named: "PeterEvent1")
         //let eventImageView1 = UIImageView(frame: CGRect(origin: CGPoint(x: 5, y: 5), size: CGSize(width: 260, height: 200)))
-        event5_2.setBackgroundImage(eventImage5_2, forState: .Normal)
+        event5_2.setBackgroundImage(eventImage5_2, for: UIControlState())
         
         let eventLabel5_2 = UILabel(frame: CGRect(x: event5_2.frame.origin.x, y: event5_2.frame.origin.y + event5_2.frame.height, width: event5_2.frame.width, height: 50))
         eventLabel5_2.font = UIFont(name: "HelveticaNeueThin", size: 20)
-        eventLabel5_2.font = eventLabel1.font.fontWithSize(20)
-        eventLabel5_2.textAlignment = .Center
+        eventLabel5_2.font = eventLabel1.font.withSize(20)
+        eventLabel5_2.textAlignment = .center
         eventLabel5_2.numberOfLines = 2
         //eventLabel1.backgroundColor = UIColor.blueColor()
         eventLabel5_2.text = "Peter witnesses Nazi aggression"
         
         // change the method of this button
-        event5_2.addTarget(self, action: "eventPeterPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event5_2.addTarget(self, action: #selector(SurvivorTimelineViewController.eventPeterPressed), for: UIControlEvents.touchUpInside)
         
         //scrollView.addSubview(event5_2)
         //scrollView.addSubview(eventLabel5_2)
@@ -233,16 +233,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event6 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage6 = UIImage(named: "ReneeEvent1")
-        event6.setBackgroundImage(eventImage6, forState: .Normal)
+        event6.setBackgroundImage(eventImage6, for: UIControlState())
         
         
         let eventLabel6 = UILabel(frame: CGRect(x: event6.frame.origin.x, y: event6.frame.origin.y + event6.frame.height, width: event6.frame.width, height: 50))
         eventLabel6.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel6.font = eventLabel1.font.fontWithSize(25)
-        eventLabel6.textAlignment = .Center
+        eventLabel6.font = eventLabel1.font.withSize(25)
+        eventLabel6.textAlignment = .center
         eventLabel6.text = "Renee in hiding"
         
-        event6.addTarget(self, action: "eventReneePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event6.addTarget(self, action: #selector(SurvivorTimelineViewController.eventReneePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event6)
         scrollView.addSubview(eventLabel6)
@@ -253,17 +253,17 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         
         let eventImage6_2 = UIImage(named: "EstherEvent1")
         //let eventImageView1 = UIImageView(frame: CGRect(origin: CGPoint(x: 5, y: 5), size: CGSize(width: 260, height: 200)))
-        event6_2.setBackgroundImage(eventImage6_2, forState: .Normal)
+        event6_2.setBackgroundImage(eventImage6_2, for: UIControlState())
         
         let eventLabel6_2 = UILabel(frame: CGRect(x: event6_2.frame.origin.x, y: event6_2.frame.origin.y + event6_2.frame.height, width: event6_2.frame.width, height: 50))
         eventLabel6_2.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel6_2.font = eventLabel1.font.fontWithSize(25)
-        eventLabel6_2.textAlignment = .Center
+        eventLabel6_2.font = eventLabel1.font.withSize(25)
+        eventLabel6_2.textAlignment = .center
         //eventLabel1.backgroundColor = UIColor.blueColor()
         eventLabel6_2.text = "Esther flees Lodz"
         
         // change the method of this button
-        event6_2.addTarget(self, action: "eventEstherPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event6_2.addTarget(self, action: #selector(SurvivorTimelineViewController.eventEstherPressed), for: UIControlEvents.touchUpInside)
         
         //scrollView.addSubview(event6_2)
         //scrollView.addSubview(eventLabel6_2)
@@ -280,30 +280,30 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event7 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage7 = UIImage(named: "HalEvent2")
-        event7.setBackgroundImage(eventImage7, forState: .Normal)
+        event7.setBackgroundImage(eventImage7, for: UIControlState())
         
         
         let eventLabel7 = UILabel(frame: CGRect(x: event7.frame.origin.x, y: event7.frame.origin.y + event7.frame.height, width: event7.frame.width, height: 50))
         eventLabel7.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel7.font = eventLabel1.font.fontWithSize(25)
-        eventLabel7.textAlignment = .Center
+        eventLabel7.font = eventLabel1.font.withSize(25)
+        eventLabel7.textAlignment = .center
         eventLabel7.text = "Hal deported to Gurs"
         
-        event7.addTarget(self, action: "eventHalPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event7.addTarget(self, action: #selector(SurvivorTimelineViewController.eventHalPressed), for: UIControlEvents.touchUpInside)
         
         // event8 is in 1941
         let event8 = UIButton(frame: CGRect(x: midpoint - 135, y: eventBelowTimeShift, width: 270, height: 180))
         
         let eventImage8 = UIImage(named: "event10.png")
-        event8.setBackgroundImage(eventImage8, forState: .Normal)
+        event8.setBackgroundImage(eventImage8, for: UIControlState())
         
         let eventLabel8 = UILabel(frame: CGRect(x: event8.frame.origin.x, y: event8.frame.origin.y + event8.frame.height, width: event8.frame.width, height: 50))
         eventLabel8.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel8.font = eventLabel1.font.fontWithSize(24)
-        eventLabel8.textAlignment = .Center
+        eventLabel8.font = eventLabel1.font.withSize(24)
+        eventLabel8.textAlignment = .center
         eventLabel8.text = "Chelmo Operations"
         
-        event8.addTarget(self, action: "eventNinePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event8.addTarget(self, action: #selector(SurvivorTimelineViewController.eventNinePressed), for: UIControlEvents.touchUpInside)
         
         //scrollView.addSubview(event8)
         //scrollView.addSubview(eventLabel8)
@@ -322,17 +322,17 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event9 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage9 = UIImage(named: "PeterEvent1")
-        event9.setBackgroundImage(eventImage9, forState: .Normal)
+        event9.setBackgroundImage(eventImage9, for: UIControlState())
         
         
         let eventLabel9 = UILabel(frame: CGRect(x: event9.frame.origin.x, y: event9.frame.origin.y + event9.frame.height, width: event9.frame.width, height: 50))
         eventLabel9.font = UIFont(name: "HelveticaNeueThin", size: 20)
-        eventLabel9.font = eventLabel1.font.fontWithSize(20)
-        eventLabel9.textAlignment = .Center
+        eventLabel9.font = eventLabel1.font.withSize(20)
+        eventLabel9.textAlignment = .center
         eventLabel9.text = "Peter witnesses Nazi aggression"
         eventLabel9.numberOfLines = 2
         
-        event9.addTarget(self, action: "eventPeterPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event9.addTarget(self, action: #selector(SurvivorTimelineViewController.eventPeterPressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event9)
         scrollView.addSubview(eventLabel9)
@@ -349,15 +349,15 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event10 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage10 = UIImage(named: "event10.png")
-        event10.setBackgroundImage(eventImage10, forState: .Normal)
+        event10.setBackgroundImage(eventImage10, for: UIControlState())
         
         let eventLabel10 = UILabel(frame: CGRect(x: event10.frame.origin.x, y: event10.frame.origin.y + event10.frame.height, width: event10.frame.width, height: 50))
         eventLabel10.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel10.font = eventLabel1.font.fontWithSize(25)
-        eventLabel10.textAlignment = .Center
+        eventLabel10.font = eventLabel1.font.withSize(25)
+        eventLabel10.textAlignment = .center
         eventLabel10.text = "Chelmo Operations"
         
-        event10.addTarget(self, action: "eventNinePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event10.addTarget(self, action: #selector(SurvivorTimelineViewController.eventNinePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event10)
         scrollView.addSubview(eventLabel10)
@@ -374,16 +374,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event11 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage11 = UIImage(named: "JessieEvent1")
-        event11.setBackgroundImage(eventImage11, forState: .Normal)
+        event11.setBackgroundImage(eventImage11, for: UIControlState())
         
         
         let eventLabel11 = UILabel(frame: CGRect(x: event11.frame.origin.x, y: event11.frame.origin.y + event11.frame.height, width: event11.frame.width, height: 50))
         eventLabel11.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel11.font = eventLabel1.font.fontWithSize(24)
-        eventLabel11.textAlignment = .Center
+        eventLabel11.font = eventLabel1.font.withSize(24)
+        eventLabel11.textAlignment = .center
         eventLabel11.text = "Jessie treats Prisoners"
         
-        event11.addTarget(self, action: "eventJessiePressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event11.addTarget(self, action: #selector(SurvivorTimelineViewController.eventJessiePressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event11)
         scrollView.addSubview(eventLabel11)
@@ -400,16 +400,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event12 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage12 = UIImage(named: "RebeccaEvent2")
-        event12.setBackgroundImage(eventImage12, forState: .Normal)
+        event12.setBackgroundImage(eventImage12, for: UIControlState())
         
         
         let eventLabel12 = UILabel(frame: CGRect(x: event12.frame.origin.x, y: event12.frame.origin.y + event12.frame.height, width: event12.frame.width, height: 50))
         eventLabel12.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel12.font = eventLabel1.font.fontWithSize(25)
-        eventLabel12.textAlignment = .Center
+        eventLabel12.font = eventLabel1.font.withSize(25)
+        eventLabel12.textAlignment = .center
         eventLabel12.text = "Rebecca is liberated"
         
-        event12.addTarget(self, action: "eventRebeccaPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event12.addTarget(self, action: #selector(SurvivorTimelineViewController.eventRebeccaPressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event12)
         scrollView.addSubview(eventLabel12)
@@ -446,17 +446,17 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event13 = UIButton(frame: CGRect(x: midpoint - 135, y: eventShiftY, width: 270, height: 180))
         
         let eventImage13 = UIImage(named: "AlbrechtEvent3")
-        event13.setBackgroundImage(eventImage13, forState: .Normal)
+        event13.setBackgroundImage(eventImage13, for: UIControlState())
         
         
         let eventLabel13 = UILabel(frame: CGRect(x: event13.frame.origin.x, y: event13.frame.origin.y + event13.frame.height, width: event13.frame.width, height: 50))
         eventLabel13.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel13.font = eventLabel1.font.fontWithSize(24)
-        eventLabel13.textAlignment = .Center
+        eventLabel13.font = eventLabel1.font.withSize(24)
+        eventLabel13.textAlignment = .center
         eventLabel13.text = "Albrecht after the war"
         
         // add new target
-        event13.addTarget(self, action: "eventAlbrechtPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event13.addTarget(self, action: #selector(SurvivorTimelineViewController.eventAlbrechtPressed), for: UIControlEvents.touchUpInside)
         
         scrollView.addSubview(event13)
         scrollView.addSubview(eventLabel13)
@@ -466,17 +466,17 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         let event13_2 = UIButton(frame: CGRect(x: midpoint - 135, y: eventBelowTimeShift, width: 270, height: 180))
         
         let eventImage13_2 = UIImage(named: "AlbrechtEvent3")
-        event13_2.setBackgroundImage(eventImage13_2, forState: .Normal)
+        event13_2.setBackgroundImage(eventImage13_2, for: UIControlState())
         
         let eventLabel13_2 = UILabel(frame: CGRect(x: event13_2.frame.origin.x, y: event13_2.frame.origin.y + event13_2.frame.height, width: event13_2.frame.width, height: 50))
         eventLabel13_2.font = UIFont(name: "HelveticaNeueThin", size: 25)
-        eventLabel13_2.font = eventLabel1.font.fontWithSize(24)
-        eventLabel13_2.textAlignment = .Center
+        eventLabel13_2.font = eventLabel1.font.withSize(24)
+        eventLabel13_2.textAlignment = .center
         //eventLabel1.backgroundColor = UIColor.blueColor()
         eventLabel13_2.text = "Albrecht after the war"
         
         // change the method of this button
-        event13_2.addTarget(self, action: "eventAlbrechtPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        event13_2.addTarget(self, action: #selector(SurvivorTimelineViewController.eventAlbrechtPressed), for: UIControlEvents.touchUpInside)
         
         //scrollView.addSubview(event13_2)
         //scrollView.addSubview(eventLabel13_2)
@@ -486,16 +486,16 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segID = segue.identifier
         
         if segID == "timelineSegue" {
-            let nextViewController = segue.destinationViewController as! SurvivorEventViewController
+            let nextViewController = segue.destination as! SurvivorEventViewController
             nextViewController.event = transitionEvent!
         }
         
         if segID == "HistTimeSegue" {
-            let nextViewController = segue.destinationViewController as! TimelineViewController
+            let nextViewController = segue.destination as! TimelineViewController
             nextViewController.segControl.selectedSegmentIndex = 0
             nextViewController.navigationItem.hidesBackButton = true
         }
@@ -505,115 +505,115 @@ class SurvivorTimelineViewController: UIViewController, UIScrollViewDelegate {
     func eventOnePressed() {
         //print("Button Pressed")
         transitionEvent = "Frank"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventMariannePressed() {
         //print("Button Pressed")
         transitionEvent = "Marianne"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventThreePressed() {
         //print("Button Pressed")
         transitionEvent = "Exhibition"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventFivePressed() {
         //print("Button Pressed")
         transitionEvent = "Kindertransport"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventMarlenePressed() {
         //print("Button Pressed")
         transitionEvent = "Marlene"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventFrankPressed() {
         print("Button Pressed")
         transitionEvent = "Frank"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventHenryPressed() {
         //print("Button Pressed")
         transitionEvent = "Henry"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventPeterPressed() {
         //print("Button Pressed")
         transitionEvent = "Peter"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventReneePressed() {
         //print("Button Pressed")
         transitionEvent = "Renee"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventEstherPressed() {
         //print("Button Pressed")
         transitionEvent = "Esther"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventHalPressed() {
         //print("Button Pressed")
         transitionEvent = "Hal"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventNinePressed() {
         //print("Button Pressed")
         transitionEvent = "Chelmo"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventTenPressed() {
         //print("Button Pressed")
         transitionEvent = "Wannsee"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventElevenPressed() {
         //print("Button Pressed")
         transitionEvent = "Warsaw"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventTwelvePressed() {
         //print("Button Pressed")
         transitionEvent = "Schindler"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventRebeccaPressed() {
         //print("Button Pressed")
         transitionEvent = "Rebecca"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventRobertPressed() {
         //print("Button Pressed")
         transitionEvent = "Robert"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventJessiePressed() {
         //print("Button Pressed")
         transitionEvent = "Jessie"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     func eventAlbrechtPressed() {
         //print("Button Pressed")
         transitionEvent = "Albrecht"
-        self.performSegueWithIdentifier("timelineSegue", sender: self)
+        self.performSegue(withIdentifier: "timelineSegue", sender: self)
     }
     
     

@@ -21,7 +21,7 @@ class BackTableVC: UITableViewController {
     
     //override func tableView(tableView: UITableView, numberOfRows
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return survivorArray.count
         } else {
@@ -29,8 +29,8 @@ class BackTableVC: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
         if indexPath.section == 0 {
             cell.textLabel?.text = survivorArray[indexPath.row]
@@ -41,7 +41,7 @@ class BackTableVC: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Survivor Locations"
         } else {
@@ -49,14 +49,14 @@ class BackTableVC: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destinationViewController = segue.destinationViewController as! MapViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! MapViewController
         
-        var indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow!
+        var indexPath : IndexPath = self.tableView.indexPathForSelectedRow!
         destinationViewController.viewNumber = indexPath.row
         destinationViewController.sectionNumber = indexPath.section
         //print(indexPath.section)

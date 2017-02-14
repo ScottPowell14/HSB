@@ -84,7 +84,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         bioTextView.flashScrollIndicators()
     }
     
@@ -130,10 +130,10 @@ class EventViewController: UIViewController {
             if let eventBio = eventBios[timelineEvent] {
                 //let bioTextView = UITextView(frame: CGRect(x: 25, y: 450, width: 325, height: 175))
                 bioTextView.text = eventBio
-                bioTextView.scrollEnabled = true
-                bioTextView.font = UIFont.systemFontOfSize(17)
+                bioTextView.isScrollEnabled = true
+                bioTextView.font = UIFont.systemFont(ofSize: 17)
                 bioTextView.scrollRangeToVisible(NSMakeRange(0, 0))
-                bioTextView.editable = false
+                bioTextView.isEditable = false
                 
                 
                 view.addSubview(bioTextView)

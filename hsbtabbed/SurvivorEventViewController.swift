@@ -21,7 +21,7 @@ class SurvivorEventViewController: UIViewController {
     
     let eventImages = ["Marianne": ["MarianneEvent1", "MarianneEvent2", "MarianneEvent3"], "Marlene": ["MarleneEvent1", "MarleneEvent2", "MarleneEvent3"], "Frank1" : ["FrankEvent1", "FrankEvent2"], "Henry": ["HenryEvent1", "HenryEvent2", "HenryEvent3"], "Peter": ["PeterEvent1", "PeterEvent2", "PeterEvent3"], "Renee": ["ReneeEvent1", "ReneeEvent2"], "Esther": ["EstherEvent1", "EstherEvent2", "EstherEvent3", "EstherEvent4"], "Hal":["HalEvent1", "HalEvent2", "HalEvent3"], "Rebecca":["RebeccaEvent1", "RebeccaEvent2", "RebeccaEvent3"], "Robert":["RobertEvent1"], "Jessie":["JessieEvent1", "JessieEvent2"], "Albrecht":["AlbrechtEvent2", "AlbrechtEvent3"], "Chelmo":["event10.png"], "Kindertransport":["event5.png"], "Frank":["FrankEvent2"]]
     
-    let eventImageURL = []
+    // let eventImageURL = []
     
     let eventCaptions = ["Marianne": ["Dr. Bruno Beger was a Nazi anthropologist who obsessed over the idea that Germans were genetically superior.",
         
@@ -147,7 +147,7 @@ class SurvivorEventViewController: UIViewController {
         
         if let bio = eventBios[event!] {
             self.textView.text = bio
-            self.textView.font = UIFont.systemFontOfSize(17)
+            self.textView.font = UIFont.systemFont(ofSize: 17)
         }
         
         self.textView.scrollRangeToVisible(NSMakeRange(0, 0))
@@ -158,7 +158,7 @@ class SurvivorEventViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         textView.flashScrollIndicators()
     }
     

@@ -24,10 +24,10 @@ class SurvivorViewController: UIViewController {
     
     
     // this method can be used to add and fill the layout and UI information that will be change from page to page for each survivor (such as the bio or pictures)
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UIDevice.currentDevice().model == "iPad" {
+        if UIDevice.current.model == "iPad" {
             //print("Yup")
             survivorTextLabel.font = UIFont(name: "HelveticaNeue", size: 24)
             survivorCaptionLabel.font = UIFont(name: "HelveticaNeue", size: 24)

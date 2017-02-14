@@ -41,10 +41,10 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         
         // Do any additional setup after loading the view.
         openMenu.target = self.revealViewController()
-        openMenu.action = Selector("revealToggle:")
+        openMenu.action = #selector(SWRevealViewController.revealToggle(_:))
         
         openMenuAgain.target = self.revealViewController()
-        openMenuAgain.action = Selector("revealToggle:")
+        openMenuAgain.action = #selector(SWRevealViewController.revealToggle(_:))
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
@@ -56,7 +56,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         map = UIImageView(image: image)
         //map.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
         map.frame = CGRect(x: 0, y: 0, width: 700, height: 680)
-        map.userInteractionEnabled = true
+        map.isUserInteractionEnabled = true
         // 650 and 625 --- -60 and -100 above
         scrollView.contentSize = CGSize(width: 700, height: 680)
         scrollView.contentOffset = CGPoint(x: 100, y: 200)
@@ -66,7 +66,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         
         
         // zoom capability -- for now, not focusing on this.
-        var doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.scrollViewDoubleTapped(_:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)
@@ -97,19 +97,19 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
             case 0:
                 survivorLabel.text = "Rebecca Hauser"
                 //print("Rebecca")
-                placeButtons(xCoordinates: [358, 374, 330, 243, 394], yCoordinates: [545, 543, 368, 316, 571], buttonMethodName: "pinButtonPressed:")
+                placeButtons(xCoordinates: [358, 374, 330, 243, 394], yCoordinates: [545, 543, 368, 316, 571], buttonMethodName: #selector(MapViewController.pinButtonPressed(_:)))
             case 1:
                 survivorLabel.text = "Hal Myers"
-                placeButtons(xCoordinates: [242 - 11, 132 - 11, 152 - 11, 87 - 11, 22 - 11], yCoordinates: [420 - 35, 493 - 35, 492 - 35, 540 - 35, 545 - 35], buttonMethodName: "pinButtonPressed:")
+                placeButtons(xCoordinates: [242 - 11, 132 - 11, 152 - 11, 87 - 11, 22 - 11], yCoordinates: [420 - 35, 493 - 35, 492 - 35, 540 - 35, 545 - 35], buttonMethodName: #selector(MapViewController.pinButtonPressed(_:)))
             case 2:
                 survivorLabel.text = "Henry Landsberger"
-                placeButtons(xCoordinates: [287 - 11, 290 - 11, 205 - 11, 178 - 11, 164 - 11], yCoordinates: [357 - 35, 381 - 35, 361 - 35, 351 - 35, 358 - 35], buttonMethodName: "pinButtonPressed:")
+                placeButtons(xCoordinates: [287 - 11, 290 - 11, 205 - 11, 178 - 11, 164 - 11], yCoordinates: [357 - 35, 381 - 35, 361 - 35, 351 - 35, 358 - 35], buttonMethodName: #selector(MapViewController.pinButtonPressed(_:)))
             case 3:
                 survivorLabel.text = "Robert Patton"
-                placeButtons(xCoordinates: [161 - 11, 243 - 11, 275 - 11, 295 - 11, 308 - 11], yCoordinates: [393 - 35, 400 - 35, 411 - 35, 432 - 35, 430 - 35], buttonMethodName: "pinButtonPressed:")
+                placeButtons(xCoordinates: [161 - 11, 243 - 11, 275 - 11, 295 - 11, 308 - 11], yCoordinates: [393 - 35, 400 - 35, 411 - 35, 432 - 35, 430 - 35], buttonMethodName: #selector(MapViewController.pinButtonPressed(_:)))
             case 4:
                 survivorLabel.text = "Jessie McIntyre"
-                placeButtons(xCoordinates: [145 - 11, 143 - 11, 161 - 11, 228 - 11, 295 - 11], yCoordinates: [275 - 35, 324 - 35, 393 - 35, 402 - 35, 432 - 35], buttonMethodName: "pinButtonPressed:")
+                placeButtons(xCoordinates: [145 - 11, 143 - 11, 161 - 11, 228 - 11, 295 - 11], yCoordinates: [275 - 35, 324 - 35, 393 - 35, 402 - 35, 432 - 35], buttonMethodName: #selector(MapViewController.pinButtonPressed(_:)))
             default:
                 survivorLabel.text = "No survivor chosen"
             }
@@ -119,55 +119,55 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
             switch viewNumber {
             case 0:
                 survivorLabel.text = "Birth Places"
-                placeButtons(xCoordinates: [287 - 12, 290 - 12, 294 - 12, 243 - 12], yCoordinates: [356 - 33, 381 - 33, 400 - 33, 412 - 33], buttonMethodName: "pinLocButtonPressed:")
+                placeButtons(xCoordinates: [287 - 12, 290 - 12, 294 - 12, 243 - 12], yCoordinates: [356 - 33, 381 - 33, 400 - 33, 412 - 33], buttonMethodName: #selector(MapViewController.pinLocButtonPressed(_:)))
                 
             case 1:
                 survivorLabel.text = "Camps"
-                placeButtons(xCoordinates: [295-11, 342 - 12, 132-11, 293 - 12, 243], yCoordinates: [432-35, 402 - 33, 493-35, 393 - 33, 316], buttonMethodName: "pinLocButtonPressed:")
+                placeButtons(xCoordinates: [295-11, 342 - 12, 132-11, 293 - 12, 243], yCoordinates: [432-35, 402 - 33, 493-35, 393 - 33, 316], buttonMethodName: #selector(MapViewController.pinLocButtonPressed(_:)))
             case 2:
                 survivorLabel.text = "Influential Cities"
-                placeButtons(xCoordinates: [266 - 12, 374, 162 - 12, 293 - 13], yCoordinates: [407 - 33, 543, 391 - 33, 388 - 33], buttonMethodName: "pinLocButtonPressed:")
+                placeButtons(xCoordinates: [266 - 12, 374, 162 - 12, 293 - 13], yCoordinates: [407 - 33, 543, 391 - 33, 388 - 33], buttonMethodName: #selector(MapViewController.pinLocButtonPressed(_:)))
             default:
                 survivorLabel.text = "No location chosen"
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segID = segue.identifier
         
         if segID == "mapLocSegue" {
             // next view controller is MapLocViewController
-            let nextViewController = segue.destinationViewController as! MapLocViewController
+            let nextViewController = segue.destination as! MapLocViewController
             nextViewController.locGroup = survivorLabel.text!
             nextViewController.locNumber = locButtonNumber
         }
     }
     
     
-    func placeButtons(xCoordinates xCoordinates: [Int], yCoordinates: [Int], buttonMethodName: Selector) {
+    func placeButtons(xCoordinates: [Int], yCoordinates: [Int], buttonMethodName: Selector) {
         let numberOfPins = xCoordinates.count
         
         for pin in 0..<numberOfPins {
             let pinButton = UIButton(frame: CGRect(x: xCoordinates[pin], y: yCoordinates[pin], width: 25, height: 35))
-            pinButton.setBackgroundImage(UIImage(named: "Pin" + "\(pin + 1)"), forState: .Normal)
-            pinButton.addTarget(self, action: buttonMethodName, forControlEvents: UIControlEvents.TouchUpInside)
+            pinButton.setBackgroundImage(UIImage(named: "Pin" + "\(pin + 1)"), for: UIControlState())
+            pinButton.addTarget(self, action: buttonMethodName, for: UIControlEvents.touchUpInside)
             pinButton.tag = pin
             map.addSubview(pinButton)
         }
     }
     
-    func pinLocButtonPressed(sender: UIButton) {
+    func pinLocButtonPressed(_ sender: UIButton) {
         //print("Pin Location Button Pressed")
         //print(sender.tag)
         
         locButtonNumber = sender.tag
         
-        self.performSegueWithIdentifier("mapLocSegue", sender: self)
+        self.performSegue(withIdentifier: "mapLocSegue", sender: self)
     }
     
     
-    func pinButtonPressed(sender:UIButton) {
+    func pinButtonPressed(_ sender:UIButton) {
         //print("Pin Button Pressed")
         //print(sender.tag)
         
@@ -180,19 +180,19 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         
         let locationLabel = UILabel(frame: CGRect(x: xCoord - 125 + 12, y: yCoord - 100, width: 250, height: 75))
         locationLabel.font = UIFont(name: "HelveticaNeueThin", size: 11)
-        locationLabel.font = locationLabel.font.fontWithSize(11)
+        locationLabel.font = locationLabel.font.withSize(11)
         locationLabel.numberOfLines = 4
-        locationLabel.textAlignment = .Center
+        locationLabel.textAlignment = .center
         locationLabel.text = textInfo
-        locationLabel.textColor = UIColor.blackColor()
+        locationLabel.textColor = UIColor.black
         locationLabel.backgroundColor = UIColor(red: 255/255, green: 250/255, blue: 240/255, alpha: 1.0)
         labelList.append(locationLabel)
         
         let labelButton = UIButton(frame: CGRect(x: xCoord - 125 + 12, y: yCoord - 100, width: 250, height: 75))
-        labelButton.opaque = false
+        labelButton.isOpaque = false
         labelButton.tag = numberOfLabelsActivated
         numberOfLabelsActivated += 1
-        labelButton.addTarget(self, action: "tapLabel:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelButton.addTarget(self, action: #selector(MapViewController.tapLabel(_:)), for: UIControlEvents.touchUpInside)
         
         // add tap gesture recognizer to turn label opacity to 0%
         //let tap = UITapGestureRecognizer(target: self, action: Selector("tapLabel:"))
@@ -203,7 +203,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         map.addSubview(labelButton)
     }
     
-    func tapLabel(sender:UIButton) {
+    func tapLabel(_ sender:UIButton) {
         //print("Label tapped")
         
         let labelInQuestion : UILabel = labelList[sender.tag]
@@ -212,11 +212,11 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         sender.removeFromSuperview()
     }
     
-    func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
+    func scrollViewDoubleTapped(_ recognizer: UITapGestureRecognizer) {
         //print("Double Tapped")
         
         // 1
-        let pointInView = recognizer.locationInView(map)
+        let pointInView = recognizer.location(in: map)
         
         // 2
         var newZoomScale = scrollView.zoomScale * 1.5
@@ -230,10 +230,10 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         let x = pointInView.x - (w / 2.0)
         let y = pointInView.y - (h / 2.0)
         
-        let rectToZoomTo = CGRectMake(x, y, w, h);
+        let rectToZoomTo = CGRect(x: x, y: y, width: w, height: h);
         
         // 4
-        scrollView.zoomToRect(rectToZoomTo, animated: true)
+        scrollView.zoom(to: rectToZoomTo, animated: true)
     }
     
     func centerScrollViewContents() {
@@ -255,12 +255,12 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         map.frame = contentsFrame
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         //print("zoom Occured")
         centerScrollViewContents()
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return map
     }
 

@@ -25,7 +25,7 @@ class PagesViewController: UIViewController, UIPageViewControllerDataSource, UIP
         navigationItem.title = survivorNames[survivorName!]
         
         // instantiating a UIPageViewController instance that will act as the data source and delegate for the survivor pages
-        pageController = UIPageViewController(transitionStyle: .PageCurl, navigationOrientation: .Horizontal, options: nil)
+        pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
         
         pageController?.delegate = self
         pageController?.dataSource = self
@@ -34,14 +34,14 @@ class PagesViewController: UIViewController, UIPageViewControllerDataSource, UIP
         
         let viewControllers: NSArray = [startingViewController]
         // switched from [AnyObject] to [UIViewController]
-        pageController!.setViewControllers(viewControllers as! [UIViewController], direction: .Forward, animated: false, completion: nil)
+        pageController!.setViewControllers(viewControllers as! [UIViewController], direction: .forward, animated: false, completion: nil)
         
         self.addChildViewController(pageController!)
         self.view.addSubview(self.pageController!.view)
         
         let pageViewRect = self.view.bounds
         pageController!.view.frame = pageViewRect
-        pageController!.didMoveToParentViewController(self)
+        pageController!.didMove(toParentViewController: self)
         
     }
     
@@ -75,52 +75,52 @@ class PagesViewController: UIViewController, UIPageViewControllerDataSource, UIP
         //pageStrings.append("Renee1")
         //pageStrings.append("Renee2")
         
-        pageContent = pageStrings
-        pageImages = imageStrings
-        pageCaptions = captionStrings
+        pageContent = pageStrings as NSArray
+        pageImages = imageStrings as NSArray
+        pageCaptions = captionStrings as NSArray
     }
     
-    func viewControllerAtIndex(index: Int) -> SurvivorViewController? {
+    func viewControllerAtIndex(_ index: Int) -> SurvivorViewController? {
         
         if (pageContent.count == 0) || (index >= pageContent.count) {
             return nil
         }
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let dataViewController = storyBoard.instantiateViewControllerWithIdentifier("contentView") as! SurvivorViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let dataViewController = storyBoard.instantiateViewController(withIdentifier: "contentView") as! SurvivorViewController
         
         // dataViewController is the page where we have to insert the pageContent array which contains sentences. 
         // We need to make another pageContent array type and pass in images to another dataObject in the dataViewController which is of type SurvivorViewController
-        dataViewController.dataObject = pageContent[index]
+        dataViewController.dataObject = pageContent[index] as AnyObject?
         dataViewController.survivorName = survivorName
-        dataViewController.imageObject = pageImages[index]
-        dataViewController.captionObject = pageCaptions[index]
-        dataViewController.pageCounter = index
+        dataViewController.imageObject = pageImages[index] as AnyObject?
+        dataViewController.captionObject = pageCaptions[index] as AnyObject?
+        dataViewController.pageCounter = index as AnyObject?
         
         return dataViewController
     }
     
     // data objects of adjacent pageContent bio paragraphs must be different or else this method fails to update the SurvivorViewController
-    func indexOfViewController(viewController: SurvivorViewController) -> Int {
+    func indexOfViewController(_ viewController: SurvivorViewController) -> Int {
         if let dataObject: AnyObject = viewController.dataObject {
-            return pageContent.indexOfObject(dataObject)
+            return pageContent.index(of: dataObject)
         } else {
             return NSNotFound
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         var index = indexOfViewController(viewController as! SurvivorViewController)
         
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
         
-        index--
+        index -= 1
         return viewControllerAtIndex(index)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         var index = indexOfViewController(viewController as! SurvivorViewController)
         
@@ -128,7 +128,7 @@ class PagesViewController: UIViewController, UIPageViewControllerDataSource, UIP
             return nil
         }
         
-        index++
+        index += 1
         if index == pageContent.count {
             return nil
         }

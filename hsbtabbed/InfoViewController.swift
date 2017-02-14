@@ -12,16 +12,16 @@ class InfoViewController: UIViewController {
 
     @IBOutlet weak var HSBIcon: UIImageView!
     
-    @IBAction func openWebsite(sender: AnyObject) {
-        if let url = NSURL(string: "http://www.holocaustspeakersbureau.org/") {
-            UIApplication.sharedApplication().openURL(url)
+    @IBAction func openWebsite(_ sender: AnyObject) {
+        if let url = URL(string: "http://www.holocaustspeakersbureau.org/") {
+            UIApplication.shared.openURL(url)
         }
     }
     
-    @IBAction func contact(sender: AnyObject) {
+    @IBAction func contact(_ sender: AnyObject) {
         let email = "sharonhalperin88@gmail.com"
-        if let url = NSURL(string: "mailto:\(email)") {
-            UIApplication.sharedApplication().openURL(url)
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.openURL(url)
         }
     }
     

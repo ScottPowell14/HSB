@@ -22,16 +22,16 @@ class FourthViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return genocideNames.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = genocideNames[indexPath.row]
         
         //let imageForCell = UIImage(named: "second")
@@ -40,16 +40,16 @@ class FourthViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Locations of Genocides"
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
         //print("Selected \(indexPath.row)")
         transitionGenoName = genocideNames[indexPath.row]
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.performSegueWithIdentifier("genoSeg", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "genoSeg", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,11 +57,11 @@ class FourthViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segID = segue.identifier
         
         if segID == "genoSeg" {
-            let nextViewController = segue.destinationViewController as! FirstViewController
+            let nextViewController = segue.destination as! FirstViewController
             nextViewController.currentGenoName = transitionGenoName!
         }
     }

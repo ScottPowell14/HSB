@@ -31,8 +31,8 @@ class FinalTimelineViewController: UIViewController, UICollectionViewDataSource,
     
     
     // implement methods for the collectionViewDataSource superclass
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! myViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! myViewCell
         
         
         
@@ -41,28 +41,28 @@ class FinalTimelineViewController: UIViewController, UICollectionViewDataSource,
         
         // title label set up
         cell.titleLabel.font = UIFont(name: "HelveticaNeueThin", size: 16)
-        cell.titleLabel.font = cell.titleLabel.font.fontWithSize(25)
-        cell.titleLabel.textAlignment = .Center
+        cell.titleLabel.font = cell.titleLabel.font.withSize(25)
+        cell.titleLabel.textAlignment = .center
         cell.titleLabel.text = timelineTitles[indexPath.row]
         
-        cell.backgroundColor = UIColor.grayColor()
+        cell.backgroundColor = UIColor.gray
         
         cell.timelineImgView.image = UIImage(named: "historical_timeline.png")
         
         return cell
     }    
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return timelineImages.count
     }
     
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //print("Button \(indexPath) selected")
     }
     
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        var cell = collectionView.cellForItemAtIndexPath(indexPath)
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        var cell = collectionView.cellForItem(at: indexPath)
         //cell.tint color update to gray...
         
         
