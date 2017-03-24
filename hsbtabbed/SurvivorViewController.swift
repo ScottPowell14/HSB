@@ -68,7 +68,8 @@ class SurvivorViewController: UIViewController {
         let imageString = imageObject as! String
         let image = UIImage(named: imageString)!
         let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(origin: CGPoint(x: 25, y: 75), size: CGSize(width: 325, height: 290))
+        let screenSize=self.view.bounds.size
+        imageView.frame = CGRect(origin: CGPoint(x: 25, y: 75), size: CGSize(width: screenSize.width/3, height: screenSize.height/3))
         
         survivorImageView.image = image
         
